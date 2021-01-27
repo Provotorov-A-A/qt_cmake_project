@@ -8,6 +8,7 @@ Project contains bash script to ease project building process.
 0. Create your project directory. 
 
    `mkdir -p ~/projects/my_qt_project`
+   
    `cd ~/projects/my_qt_project`
 1. Clone project from repository.
 
