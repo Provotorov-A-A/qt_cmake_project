@@ -12,7 +12,7 @@ Project contains bash script to ease project building process.
    `cd ~/projects/my_qt_project`
 1. Clone project from repository.
 
-   `clone https://github.com/Provotorov-A-A/qt_cmake_project.git`
+   `git clone https://github.com/Provotorov-A-A/qt_cmake_project.git`
 2. Rename project name in ./CMakeLists.txt (line with *project* command). 
 
    That line will be:
