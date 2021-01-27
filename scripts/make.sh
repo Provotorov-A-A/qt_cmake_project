@@ -11,7 +11,7 @@ DEFAULT_INSTALL_DIR="${ROOT_DIR}/INSTALL"
 DEFAULT_PROJECT_CONFIGURATION=Debug
 DEFAULT_JOBS=-j4
 
-PREBUILD_FILE=./set_env.sh
+PREBUILD_FILE=${ROOT_DIR}/scripts/set_env.sh
 
 ###################################################
 PROJECT_CONFIGURATION=$DEFAULT_PROJECT_CONFIGURATION
@@ -42,7 +42,7 @@ if [ -z "$CMAKE" ] ; then
 fi
 
 ###################################################
-# Source hook file before start if it is exists
+# Source prebuild file before start if it is exists
 if [ -e "$PREBUILD_FILE" ]; then
 	echo "### Prebuild file ${PREBUILD_FILE} was found. Source it."
 	source "$PREBUILD_FILE"
