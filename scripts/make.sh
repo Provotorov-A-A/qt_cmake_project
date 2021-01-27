@@ -24,7 +24,7 @@ HELP="Build cmake project with MinGW Makefiles generator. Build directory = PWD/
 <script> clean - remove build directory
 <script> config - do cmake config step with a PWD as CMake source directory
 <script> build <build_dir> - build target \'target\' to build directory \'build_dir\'. If no \'build_dir\' will be specified default path will be used'
-<script> install <install_dir> - install to install_dir. If no \'install_dir\' will be specified default path will be used''
+<script> install - install to default intsall directory
 <script> run - try to run file with a same name as PWD dirname in build directory."
 
 ###################################################
