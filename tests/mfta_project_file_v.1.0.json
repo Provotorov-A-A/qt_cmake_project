@@ -1,0 +1,51 @@
+{
+	"Version" : "v.1.0",
+	"Design Name" : "Test_design_name",
+	"Design Dir" : "C:/Users/provotorov.a/Documents/MilandrIdeProjects/simple_led",
+	"Corners" :
+	[
+		{
+			"Name" : "Typical",
+			"Description" : "27C 1800mv",
+			"Files" :
+			[
+				"C:/builds/opensta/install/bin/test/mldr_bld/top_netlist.v",
+				"C:/builds/opensta/install/bin/test/mldr_bld/top.sdc",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/verilog/synth/jtagblock_bb.v",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/verilog/synth/powercells_bb.v",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_tt_1.80_27.lib",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_IO_tt_1.80_27.lib",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_dBlocks_tt_1.80_27.lib"
+			]
+		},
+		{
+			"Name" : "Slow",
+			"Description" : "125C 1620mv",
+			"Files" :
+			[
+				"C:/builds/opensta/install/bin/test/mldr_bld/top_netlist.v",
+				"C:/builds/opensta/install/bin/test/mldr_bld/top.sdc",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/verilog/synth/jtagblock_bb.v",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/verilog/synth/powercells_bb.v",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_ss_1.62_125.lib",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_IO_ss_1.62_125.lib",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_dBlocks_ss_1.62_125.lib"
+			]
+		},
+		{
+			"Name" : "Fast",
+			"Description" : "-60C 1980mv",
+			"Files" :	
+			[
+				"C:/builds/opensta/install/bin/test/mldr_bld/top_netlist.v",
+				"C:/builds/opensta/install/bin/test/mldr_bld/top.sdc",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/verilog/synth/jtagblock_bb.v",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/verilog/synth/powercells_bb.v",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_ff_1.98_m60.lib",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_IO_ff_1.98_m60.lib",
+				"C:/builds/opensta/install/bin/test/mldr_model/PLISM3/liberty/M125_M3_dBlocks_ff_1.98_m60.lib"
+			]
+		}
+	],
+	"Version Data" : ""
+}
