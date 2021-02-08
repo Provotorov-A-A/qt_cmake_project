@@ -8,10 +8,12 @@ DEFAULT_TARGET_NAME=$(basename $ROOT_DIR)
 DEFAULT_BUILD_DIR="${ROOT_DIR}/BUILD"
 DEFAULT_INSTALL_DIR="${ROOT_DIR}/INSTALL"
 
+DEFAULT_CMAKE_GENERATOR="Unix Makefiles"
 DEFAULT_PROJECT_CONFIGURATION=Debug
 DEFAULT_JOBS=-j4
 
-PREBUILD_FILE=${ROOT_DIR}/scripts/set_env.sh
+PREBUILD_FILE_RELATIVE=scripts/set_env.sh
+PREBUILD_FILE=${ROOT_DIR}/${PREBUILD_FILE_RELATIVE}
 
 ###################################################
 PROJECT_CONFIGURATION=$DEFAULT_PROJECT_CONFIGURATION
@@ -19,13 +21,19 @@ arg_command=$1
 
 ###################################################
 # Help string
-HELP="Build cmake project with MinGW Makefiles generator. Build directory = PWD/BUILD. Project name is a same as PWD dirname. Usage:
-<script> [-help | --help]	- print help
-<script> clean - remove build directory
-<script> config - do cmake config step with a PWD as CMake source directory
-<script> build <build_dir> - build target \'target\' to build directory \'build_dir\'. If no \'build_dir\' will be specified default path will be used'
-<script> install - install to default intsall directory
-<script> run - try to run file with a same name as PWD dirname in build directory."
+HELP="make.sh: make.sh [command] [options] 
+  Wrapper for cmake used to ease basic operations (config, build, etc) over simple CMake project (one executable target). 
+  Root directory name must be the same as CMake project name in CMakeFile.txt.
+  Build directory = ./BUILD.
+  Install directory =  ./INSTALL.
+  Prebuild file shell script may be sourced before any operations will be done. Default file to be searched: ./$PREBUILD_FILE_RELATIVE.
+  Commands: 
+		make.sh [-help | --help]	- print help
+		make.sh config [cmake_gen] 	- do cmake config step with a PWD as CMake source directory. Default generator is ${DEFAULT_CMAKE_GENERATOR}
+		make.sh build				- build target
+		make.sh run					- try to run file with a same name as PWD dirname in build directory
+		make.sh install 			- install target
+		make.sh clean 				- remove build and install directory"
 
 ###################################################
 # PRINT HELP
@@ -42,7 +50,7 @@ if [ -z "$CMAKE" ] ; then
 fi
 
 ###################################################
-# Source prebuild file before start if it is exists
+# Source prebuild file before start if it exists
 if [ -e "$PREBUILD_FILE" ]; then
 	echo "### Prebuild file ${PREBUILD_FILE} was found. Source it."
 	source "$PREBUILD_FILE"
@@ -73,16 +81,19 @@ fi
 if [[ "$arg_command" =~ [Cc][Oo][Nn][Ff][Ii][Gg] ]]	; then
 	root_dir=${ROOT_DIR}
 	build_dir=${DEFAULT_BUILD_DIR}
-	
+	generator=$2
 	if [ ! -d "$root_dir" ]; then
 		echo "Error! Root directory $root_dir doesn't exist."
 		exit
 	fi
-
-	echo "### Configuring. Source dir: ${root_dir}   Build dir: ${build_dir}"
+	if [ -z "${generator}" ]; then
+	    generator="${DEFAULT_CMAKE_GENERATOR}"
+	    echo "### Generator was not passed. Default generator will ${generator} be used"
+	fi
+	echo "### Configuring. Generator: ${generator}    Source dir: ${root_dir}   Build dir: ${build_dir}"
 	
 	# Cmake configuration step invocation
-	$CMAKE -G "MinGW Makefiles"   \
+	$CMAKE -G "${generator}"   \
 	-j1 \
 	-S "${root_dir}" \
 	-B "${build_dir}"
@@ -95,14 +106,14 @@ if [[ "$arg_command" =~ [Bb][Uu][Ii][Ll][Dd] ]]	; then
 	jobs_option=$DEFAULT_JOBS
 	target_option=$DEFAULT_TARGET_NAME
 	project_configuration=${PROJECT_CONFIGURATION}
-	build_dir=$2
+	build_dir=${DEFAULT_BUILD_DIR}
 	
-	if [ -z $build_dir ]; then
-		build_dir=${DEFAULT_BUILD_DIR}
+	if [ ! -f "${build_dir}\CMakeCache.txt" ]; then
+		echo "### Need CMake config step before build. Stop building."
+		exit
 	fi
 	echo "### Building. Build dir: ${build_dir}"
 	
-#	mkdir -p ${build_dir}
 	$CMAKE --build "$build_dir" --verbose ${jobs_option} --target ${target_option} --config ${project_configuration}
 	exit
 fi
@@ -155,5 +166,3 @@ fi
 # UNKNOWN COMMAND
 echo Unknown command \'"$arg_command"\'
 echo "Type <script> --help for help"
-
-#read -N 1
