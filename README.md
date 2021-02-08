@@ -41,4 +41,4 @@ Project successfully tested with MSYS2 (MinGW64) environment.
 1. You can also use help script to to execute *clean* and *install* targets. Use help:
 
    `./scripts/make.sh --help`
-2. You can add or change default environment variables (add cmake path for example) in *./scripts/set_env.sh* file that will be executed before any command with ./scripts/make.sh help file. Also You can add or change default CMake variables by adding it to *./CMakeLocal.txt* file that will be included in CMakeLists.txt file.
+2. You can add or change default environment variables (add cmake path for example) in *./scripts/set_env.sh* file that will be executed before any command with ./scripts/make.sh help file.
