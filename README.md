@@ -2,7 +2,7 @@
 
 ## Description
 Template for C++ project that uses CMake and Qt.
-Project contains shell script to ease project building process with MinGW generator.
+Project contains shell script to ease simple CMake project building process.
 Template may be used for fast prototyping purposes.
 
 ## Requirements 
@@ -23,7 +23,7 @@ Project successfully tested with MSYS2 (MinGW64) environment.
 1. Clone project from repository.
 
    `git clone https://github.com/Provotorov-A-A/qt_cmake_project.git .`
-2. Rename project name in ./CMakeLists.txt (line with *project* command). Note, that for help script's correct work it's requires that project name should be the same as it's directory name.
+2. Rename project name in ./CMakeLists.txt (line with *project* command). Note, that it's required to set project name the same as it's directory name.
 
    That line will be:
    `project(my_qt_project LANGUAGES CXX)`
@@ -38,7 +38,7 @@ Project successfully tested with MSYS2 (MinGW64) environment.
    `./scripts/make.sh run`
    
 ## Notes
-1. You can also use help script to to execute *clean* and *install* targets. Use help:
+1. You can also use help script to execute *clean* and *install* targets. Use help:
 
    `./scripts/make.sh --help`
 2. You can add or change default environment variables (add cmake path for example) in *./scripts/set_env.sh* file that will be executed before any command with ./scripts/make.sh help file.
