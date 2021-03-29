@@ -26,6 +26,7 @@ Project successfully tested with MSYS2 (MinGW64) environment.
 2. Remove remote repository if it's not needed.
 
 `git remote rm origin .`
+
 3. Rename project name in ./CMakeLists.txt (line with *project* command). Note, that it's required to set project name the same as it's directory name.
 
    That line will be:
