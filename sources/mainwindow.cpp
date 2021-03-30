@@ -1,16 +1,28 @@
-#include "mainwindow.h"
 #include <QWidget>
 #include <QVBoxLayout>
-#include <QPushButton>
+
+#include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
 {
-	QWidget* centralWidget = new QWidget();
-	QVBoxLayout* layout = new QVBoxLayout();;
-	QPushButton* button = new QPushButton("Close");
-	layout->addWidget(button);
-	centralWidget->setLayout(layout);	
-	this->setCentralWidget(centralWidget);
-	
-	connect(button, SIGNAL(pressed()), this, SLOT(close()));
+    QLayout* mainLayout = Layout();
+	setLayout(mainLayout);	
+    Connections();
+    show();
 }
+
+QLayout *MainWindow::Layout()
+{
+    QVBoxLayout* layout = new QVBoxLayout();
+	m_textEdit = new QTextEdit();
+    m_closeButton = new QPushButton("Close");
+    layout->addWidget(m_textEdit);
+    layout->addWidget(m_closeButton);
+    return layout;
+}
+
+void MainWindow::Connections()
+{
+    connect(m_closeButton, SIGNAL(pressed()), this, SLOT(close()));    
+}
+
