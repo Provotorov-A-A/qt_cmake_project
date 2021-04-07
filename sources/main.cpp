@@ -4,7 +4,7 @@
 #include <QStyleFactory>
 #include <QMainWindow>
 
-#include "MainWindow.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
