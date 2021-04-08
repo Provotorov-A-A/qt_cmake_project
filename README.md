@@ -2,8 +2,8 @@
 
 ## Description
 Template for C++ project that uses CMake and Qt.
-Project contains shell script to ease simple CMake project building process.
-Template may be used for fast prototyping purposes.
+Project contains shell script to ease project building process.
+Template may be used as skeleton for fast prototyping purposes.
 
 ## Requirements 
 You should already have in your system:
