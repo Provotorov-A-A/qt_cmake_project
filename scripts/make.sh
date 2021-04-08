@@ -1,19 +1,43 @@
 #!/usr/bin/bash
 
 ###################################################
+PLATFORM="unknown"
+PATH_DELIM='/'
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        PLATFORM="linux"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        PLATFORM="macosx"
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+        PLATFORM="cygwin"
+        PATH_DELIM='/'
+elif [[ "$OSTYPE" == "msys" ]]; then
+        PLATFORM="msys"
+        PATH_DELIM='/'
+elif [[ "$OSTYPE" == "win32" ]]; then
+        PLATFORM="win" # I'm not sure this can happen.
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+        PLATFORM="freebsd"
+else
+        PLATFORM="unknown"
+fi
+
+echo "### Platform recognized: $PLATFORM"
+
+###################################################
 # SCRIPT CONSTANTS
 
 ROOT_DIR="${PWD}"
 DEFAULT_TARGET_NAME=$(basename $ROOT_DIR)
-DEFAULT_BUILD_DIR="${ROOT_DIR}/BUILD"
-DEFAULT_INSTALL_DIR="${ROOT_DIR}/INSTALL"
+DEFAULT_BUILD_DIR="${ROOT_DIR}${PATH_DELIM}BUILD"
+DEFAULT_INSTALL_DIR="${ROOT_DIR}${PATH_DELIM}INSTALL"
 
 DEFAULT_CMAKE_GENERATOR="Unix Makefiles"
 DEFAULT_PROJECT_CONFIGURATION=Debug
 DEFAULT_JOBS=-j4
 
-PREBUILD_FILE_RELATIVE=scripts/set_env.sh
-PREBUILD_FILE=${ROOT_DIR}/${PREBUILD_FILE_RELATIVE}
+PREBUILD_FILE_RELATIVE="scripts${PATH_DELIM}set_env.sh"
+PREBUILD_FILE=${ROOT_DIR}${PATH_DELIM}${PREBUILD_FILE_RELATIVE}
+
 
 ###################################################
 PROJECT_CONFIGURATION=$DEFAULT_PROJECT_CONFIGURATION
@@ -108,7 +132,7 @@ if [[ "$arg_command" =~ [Bb][Uu][Ii][Ll][Dd] ]]	; then
 	project_configuration=${PROJECT_CONFIGURATION}
 	build_dir=${DEFAULT_BUILD_DIR}
 	
-	if [ ! -f "${build_dir}\CMakeCache.txt" ]; then
+	if [ ! -f "${build_dir}${PATH_DELIM}CMakeCache.txt" ]; then
 		echo "### Need CMake config step before build. Stop building."
 		exit
 	fi
@@ -138,12 +162,16 @@ if [[ "$arg_command" =~ [Rr][Uu][Nn] ]]; then
 	# Let's know what environment we running in to get valid executable target. 
 	# Not Linux enought for us if we not using Mac (Darwin) for sure.
 	# Add .exe postdix to target if we in MinGW or CYGWIN.
-	if [ ! "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-		postfix='.exe'
-	fi
+# 	if [ ! "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+# 		postfix='.exe'
+# 	fi
 	
-	intsalled_target=${install_dir}/bin/$DEFAULT_TARGET_NAME$postfix
-	build_target=${build_dir}/$DEFAULT_TARGET_NAME$postfix
+	if [ $PLATFORM == "msys" ]; then
+        postfix='.exe'
+    fi
+	
+	intsalled_target=${install_dir}${PATH_DELIM}bin${PATH_DELIM}$DEFAULT_TARGET_NAME$postfix
+	build_target=${build_dir}${PATH_DELIM}$DEFAULT_TARGET_NAME$postfix
 	
 	# Try to run target in default install dir. If it's not found try to run target in default build dir.
 	if [ -z "$intsalled_target" ] || [ ! -f "$intsalled_target" ]; then
