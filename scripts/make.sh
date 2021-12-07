@@ -112,7 +112,7 @@ if [[ "$arg_command" =~ [Cc][Oo][Nn][Ff][Ii][Gg] ]]	; then
 	fi
 	if [ -z "${generator}" ]; then
 	    generator="${DEFAULT_CMAKE_GENERATOR}"
-	    echo "### Generator was not passed. Default generator will ${generator} be used"
+	    echo "### Generator was not passed. Default generator ${generator} will be used"
 	fi
 	echo "### Configuring. Generator: ${generator}    Source dir: ${root_dir}   Build dir: ${build_dir}"
 	
