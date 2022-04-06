@@ -20,12 +20,12 @@ Project successfully tested with MSYS2 (MinGW64) environment.
    `mkdir -p ~/projects/my_qt_project`
    
    `cd ~/projects/my_qt_project`
-1. Clone project from repository.
+1. Clone project from repository. Note a point in the end of command.
 
    `git clone https://github.com/Provotorov-A-A/qt_cmake_project.git .`
 2. Remove remote repository if it's not needed.
    
-   `git remote rm origin .`
+   `git remote remove origin`
 3. Rename project name in ./CMakeLists.txt (line with *project* command). Note, that it's required to set project name the same as it's directory name.
 
    That line will be:
