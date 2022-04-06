@@ -118,7 +118,6 @@ if [[ "$arg_command" =~ [Cc][Oo][Nn][Ff][Ii][Gg] ]]	; then
 	
 	# Cmake configuration step invocation
 	$CMAKE -G "${generator}"   \
-	-j1 \
 	-S "${root_dir}" \
 	-B "${build_dir}"
 	exit
