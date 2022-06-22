@@ -92,7 +92,7 @@ fi
 
 ###################################################
 # CLEAN
-if [[ "$arg_command" =~ [Cc][Ll][Ee][Aa][Nn] ]] ; then
+if [[ "$arg_command" =~ [Cc][Ll][Ee][Aa][Nn]$ ]] ; then
 	build_dir=${DEFAULT_BUILD_DIR}
 	install_dir=${DEFAULT_INSTALL_DIR}
 	echo "### Clean. Remove directories: \"${build_dir}\"; \"${install_dir}\""
@@ -103,7 +103,7 @@ fi
 
 ###################################################
 # CONFIG
-if [[ "$arg_command" =~ [Cc][Oo][Nn][Ff][Ii][Gg] ]]	; then
+if [[ "$arg_command" =~ [Cc][Oo][Nn][Ff][Ii][Gg]$ ]]	; then
 	root_dir=${ROOT_DIR}
 	build_dir=${DEFAULT_BUILD_DIR}
 	generator=$2
@@ -126,7 +126,7 @@ fi
 
 ###################################################
 # BUILD
-if [[ "$arg_command" =~ [Bb][Uu][Ii][Ll][Dd] ]]	; then
+if [[ "$arg_command" =~ [Bb][Uu][Ii][Ll][Dd]$ ]]	; then
 	jobs_option=$DEFAULT_JOBS
 	target_option=$DEFAULT_TARGET_NAME
 	project_configuration=${PROJECT_CONFIGURATION}
@@ -144,7 +144,7 @@ fi
 
 ###################################################
 # INSTALL
-if [[ "$arg_command" =~ [Ii][Nn][Ss][Tt][Aa][Ll][Ll] ]]	; then
+if [[ "$arg_command" =~ [Ii][Nn][Ss][Tt][Aa][Ll][Ll]$ ]]	; then
 	project_configuration=${PROJECT_CONFIGURATION}
 	bin_dir=${DEFAULT_BUILD_DIR}
 	install_dir=${DEFAULT_INSTALL_DIR}
@@ -155,7 +155,7 @@ fi
 
 ###################################################
 # Run 
-if [[ "$arg_command" =~ [Rr][Uu][Nn] ]]; then
+if [[ "$arg_command" =~ [Rr][Uu][Nn]$ ]]; then
 	install_dir=${DEFAULT_INSTALL_DIR}
 	build_dir=${DEFAULT_BUILD_DIR}
 	postfix=""
