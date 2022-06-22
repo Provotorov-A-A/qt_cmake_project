@@ -26,7 +26,8 @@ echo "### Platform recognized: $PLATFORM"
 ###################################################
 # SCRIPT CONSTANTS
 
-ROOT_DIR="${PWD}"
+SCRIPT_DIR=$(dirname $(realpath "$0"))
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 DEFAULT_TARGET_NAME=$(basename $ROOT_DIR)
 DEFAULT_BUILD_DIR="${ROOT_DIR}${PATH_DELIM}BUILD"
 DEFAULT_INSTALL_DIR="${ROOT_DIR}${PATH_DELIM}INSTALL"
